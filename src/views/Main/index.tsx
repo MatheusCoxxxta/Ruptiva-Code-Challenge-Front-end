@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from "react";
-import { ScrollView, RefreshControl, Text, StyleSheet } from "react-native";
+import { ScrollView, RefreshControl, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import Form from "../../components/Main/Form";
 import UserList from "../../components/Main/UserList";
-import users from "../../../utils/usersMock";
+import users from "../../../tools/usersMock";
 
 const wait = (timeout: number) => {
   return new Promise((resolve) => {
@@ -20,6 +20,14 @@ const Main = () => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  const handleForm = (name: string, document: string) => {
+    console.log("Nome: ", name);
+  };
+
+  const handleDelete = (id: number) => {
+    console.log("Id: ", id);
+  };
+
   return (
     <>
       <ScrollView
@@ -28,7 +36,7 @@ const Main = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Form />
+        <Form handle={handleForm} />
         <UserList users={users} />
       </ScrollView>
     </>
@@ -44,6 +52,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#f0f0f5",
+    paddingTop: 100,
   },
 });
 
