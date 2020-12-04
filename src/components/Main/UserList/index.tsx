@@ -13,8 +13,13 @@ import { Feather } from "@expo/vector-icons";
 
 const UserList = (props: {
   users: { id: number; name: string; document: string; type: string }[];
+  delete: (id: number) => void;
 }) => {
   let { users } = props;
+
+  const handleDelete = (id: number) => {
+    props.delete(id);
+  };
 
   return (
     <>
@@ -50,7 +55,7 @@ const UserList = (props: {
                           },
                           {
                             text: "Sim",
-                            onPress: () => Alert.alert("Usuário deletado."),
+                            onPress: () => handleDelete(user.id),
                           },
                         ]
                       )

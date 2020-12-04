@@ -15,7 +15,7 @@ const FormInput = styled.TextInput`
   height: 45px;
   border-radius: 10px;
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   padding-left: 10px;
   background-color: #fff;
 `;
@@ -36,4 +36,18 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export { FormLabel, InputGroup, FormInput, FormButton, ButtonText };
+const WarningLabel = styled.Text`
+  color: #f11;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export {
+  FormLabel,
+  InputGroup,
+  FormInput,
+  FormButton,
+  ButtonText,
+  WarningLabel,
+};

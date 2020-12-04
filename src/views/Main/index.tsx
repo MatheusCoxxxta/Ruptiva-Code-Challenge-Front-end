@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import { ScrollView, RefreshControl, StyleSheet } from "react-native";
+import React, { useState, useCallback, useEffect } from "react";
+import { ScrollView, RefreshControl, StyleSheet, Alert } from "react-native";
 import Constants from "expo-constants";
 import Form from "../../components/Main/Form";
 import UserList from "../../components/Main/UserList";
@@ -21,12 +21,15 @@ const Main = () => {
   }, []);
 
   const handleForm = (name: string, document: string) => {
-    console.log("Nome: ", name);
+    console.log("Doc: ", document);
   };
 
   const handleDelete = (id: number) => {
-    console.log("Id: ", id);
+    let newUsers = usersArray.filter((user) => user.id !== id);
+    setUsers(newUsers);
   };
+
+  const [usersArray, setUsers] = useState(users);
 
   return (
     <>
@@ -37,7 +40,7 @@ const Main = () => {
         }
       >
         <Form handle={handleForm} />
-        <UserList users={users} />
+        <UserList users={usersArray} delete={handleDelete} />
       </ScrollView>
     </>
   );

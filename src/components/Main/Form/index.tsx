@@ -6,15 +6,25 @@ import {
   FormInput,
   FormButton,
   ButtonText,
+  WarningLabel,
 } from "./style";
 import { TextInputMask } from "react-native-masked-text";
+import * as Yup from "yup";
 
 const Form = (props: { handle: (name: string, document: string) => void }) => {
   const [name, setName] = useState("");
   const [document, setDocument] = useState("");
+  const [requireName, setRequireName] = useState("");
+  const [requireDocument, setRequireDocument] = useState("");
 
   const handleForm = () => {
-    props.handle(name, document);
+    let docFormated = document
+      .replace(/\./g, "")
+      .replace(/\-/g, "")
+      .replace(/\//g, "");
+    if (name && docFormated) props.handle(name, docFormated);
+    if (!name) setRequireName("Insira um nome!");
+    if (!document) setRequireDocument("Insira um CPF ou CNPJ!");
   };
 
   return (
@@ -27,7 +37,9 @@ const Form = (props: { handle: (name: string, document: string) => void }) => {
           onChangeText={(value) => setName(value)}
         />
       </InputGroup>
-
+      {requireName && !name ? (
+        <WarningLabel> {requireName} </WarningLabel>
+      ) : null}
       <FormLabel>Documento</FormLabel>
       <InputGroup>
         <TextInputMask
@@ -38,6 +50,9 @@ const Form = (props: { handle: (name: string, document: string) => void }) => {
           onChangeText={(value) => setDocument(value)}
         />
       </InputGroup>
+      {requireDocument && !document ? (
+        <WarningLabel> {requireDocument} </WarningLabel>
+      ) : null}
 
       <InputGroup>
         <FormButton>
@@ -61,7 +76,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 10,
     marginTop: 5,
-    marginBottom: 15,
+    marginBottom: 5,
     paddingLeft: 10,
     backgroundColor: "#fff",
   },
