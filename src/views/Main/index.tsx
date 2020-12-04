@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { ScrollView, RefreshControl, StyleSheet, Text } from "react-native";
+import {
+  ScrollView,
+  RefreshControl,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
 import Constants from "expo-constants";
 import Form from "../../components/Main/Form";
 import UserList from "../../components/Main/UserList";
@@ -53,6 +58,11 @@ const Main = () => {
 
   return (
     <>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
