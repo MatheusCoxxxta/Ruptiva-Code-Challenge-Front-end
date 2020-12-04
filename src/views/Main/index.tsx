@@ -24,9 +24,6 @@ const Main = () => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  let type: string;
-  let id: number = 3;
-
   const users = useSelector((state: ApplicationState) => state.users.data);
 
   const dispatch = useDispatch();
@@ -39,10 +36,11 @@ const Main = () => {
     dispatch(loadUsers());
   };
 
+  let type: string;
   const handleForm = (name: string, document: string) => {
     if (document.length === 11) type = "individual";
     else if (document.length === 14) type = "business";
-    const user: User = { id, name, document, type };
+    const user: User = { name, document, type };
 
     dispatch(saveUser(user));
   };

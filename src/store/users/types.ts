@@ -13,7 +13,7 @@ export enum UserActionTypes {
  */
 
 export interface User {
-  id: number,
+  id?: number,
   name: string,
   document: string,
   type: string
