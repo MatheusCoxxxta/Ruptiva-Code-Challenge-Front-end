@@ -2,25 +2,23 @@ import { Reducer } from "redux"
 import { UsersState, UserActionTypes } from "./types"
 
 const INITIAL_STATE: UsersState = {
-  data: [{
-    id: 1, name: "Matheus", document: "49818286839", type: "individual"
-  }, {
-    id: 2, name: "Matheus", document: "49818286839", type: "business"
-  }]
+  data: [],
 }
 
 const reducer: Reducer<UsersState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case UserActionTypes.LOAD:
+      return { ...state };
     case UserActionTypes.GET:
-      console.log("atualizando")
-      return { ...state, users: action.users };
+      return { ...state, data: action.payload };
     case UserActionTypes.SAVE:
-      const newUser = action.payload
-      return { ...state, data: [...state.data, newUser] }
+
+      const newList = [...state.data, action.payload]
+      return { ...state, data: newList }
 
     case UserActionTypes.DELETE:
-      const userId = action.payload.id
-      const allUsers = state.data.filter(user => user.id !== userId)
+      const userId = action.payload._id
+      const allUsers = state.data.filter(user => user._id !== userId)
       return { ...state, data: allUsers }
 
     default:
