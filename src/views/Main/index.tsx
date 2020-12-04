@@ -13,7 +13,12 @@ import { User } from "../../store/users/types";
 
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "../../store";
-import { deleteUser, loadUsers, saveUser } from "../../store/users/actions";
+import {
+  deleteUser,
+  loadUsers,
+  saveUser,
+  loadRequest,
+} from "../../store/users/actions";
 
 const wait = (timeout: number) => {
   return new Promise((resolve) => {
@@ -26,6 +31,7 @@ const Main = () => {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
+    getUsers();
 
     wait(2000).then(() => setRefreshing(false));
   }, []);
@@ -39,7 +45,7 @@ const Main = () => {
   };
 
   const getUsers = () => {
-    dispatch(loadUsers());
+    dispatch(loadRequest());
   };
 
   let type: string;
@@ -53,7 +59,7 @@ const Main = () => {
 
   useEffect(() => {
     getUsers();
-  });
+  }, []);
 
   const [usersArray, setUsers] = useState(users);
 
