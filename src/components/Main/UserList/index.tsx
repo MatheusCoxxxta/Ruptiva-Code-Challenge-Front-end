@@ -10,15 +10,16 @@ import { DataTable } from "react-native-paper";
 import styled from "styled-components/native";
 import { cpfMask, cnpjMask } from "../../../../tools/documentMasks";
 import { Feather } from "@expo/vector-icons";
+import { User } from "../../../store/users/types";
 
 const UserList = (props: {
   users: { id: number; name: string; document: string; type: string }[];
-  delete: (id: number) => void;
+  delete: (user: User) => void;
 }) => {
   let { users } = props;
 
-  const handleDelete = (id: number) => {
-    props.delete(id);
+  const handleDelete = (user: User) => {
+    props.delete(user);
   };
 
   return (
@@ -55,7 +56,7 @@ const UserList = (props: {
                           },
                           {
                             text: "Sim",
-                            onPress: () => handleDelete(user.id),
+                            onPress: () => handleDelete(user),
                           },
                         ]
                       )

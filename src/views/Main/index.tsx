@@ -1,9 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { ScrollView, RefreshControl, StyleSheet, Alert } from "react-native";
+import { ScrollView, RefreshControl, StyleSheet, Text } from "react-native";
 import Constants from "expo-constants";
 import Form from "../../components/Main/Form";
 import UserList from "../../components/Main/UserList";
-import users from "../../../tools/usersMock";
+import { User } from "../../store/users/types";
+
+import { useSelector, useDispatch } from "react-redux";
+import { ApplicationState } from "../../store";
+import { deleteUser, loadUsers, saveUser } from "../../store/users/actions";
 
 const wait = (timeout: number) => {
   return new Promise((resolve) => {
@@ -20,14 +24,32 @@ const Main = () => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  const handleForm = (name: string, document: string) => {
-    console.log("Doc: ", document);
+  let type: string;
+  let id: number = 3;
+
+  const users = useSelector((state: ApplicationState) => state.users.data);
+
+  const dispatch = useDispatch();
+
+  const handleDelete = (user: User) => {
+    dispatch(deleteUser(user));
   };
 
-  const handleDelete = (id: number) => {
-    let newUsers = usersArray.filter((user) => user.id !== id);
-    setUsers(newUsers);
+  const getUsers = () => {
+    dispatch(loadUsers());
   };
+
+  const handleForm = (name: string, document: string) => {
+    if (document.length === 11) type = "individual";
+    else if (document.length === 14) type = "business";
+    const user: User = { id, name, document, type };
+
+    dispatch(saveUser(user));
+  };
+
+  useEffect(() => {
+    getUsers();
+  });
 
   const [usersArray, setUsers] = useState(users);
 
@@ -40,11 +62,13 @@ const Main = () => {
         }
       >
         <Form handle={handleForm} />
-        <UserList users={usersArray} delete={handleDelete} />
+        <UserList users={users} delete={handleDelete} />
       </ScrollView>
     </>
   );
 };
+
+export default Main;
 
 const styles = StyleSheet.create({
   container: {
@@ -59,5 +83,3 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
 });
-
-export default Main;
