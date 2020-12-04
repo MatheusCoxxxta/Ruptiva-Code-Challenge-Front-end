@@ -9,7 +9,7 @@ import {
   WarningLabel,
 } from "./style";
 import { TextInputMask } from "react-native-masked-text";
-import * as Yup from "yup";
+import { formatDocument } from "../../../../tools/documentInputFormat";
 
 const Form = (props: { handle: (name: string, document: string) => void }) => {
   const [name, setName] = useState("");
@@ -18,11 +18,13 @@ const Form = (props: { handle: (name: string, document: string) => void }) => {
   const [requireDocument, setRequireDocument] = useState("");
 
   const handleForm = () => {
-    let docFormated = document
-      .replace(/\./g, "")
-      .replace(/\-/g, "")
-      .replace(/\//g, "");
-    if (name && docFormated) props.handle(name, docFormated);
+    let docFormated: string = formatDocument(document);
+
+    if (name && docFormated) {
+      props.handle(name, docFormated);
+      setName("");
+      setDocument("");
+    }
     if (!name) setRequireName("Insira um nome!");
     if (!document) setRequireDocument("Insira um CPF ou CNPJ!");
   };
