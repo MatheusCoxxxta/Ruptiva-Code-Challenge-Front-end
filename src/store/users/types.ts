@@ -3,6 +3,7 @@
  */
 
 export enum UserActionTypes {
+  LOAD = "LOAD_REQUEST",
   GET = "GET_USERS",
   SAVE = "SAVE_USER",
   DELETE = "DELETE_USER"
@@ -13,7 +14,7 @@ export enum UserActionTypes {
  */
 
 export interface User {
-  id?: number,
+  _id?: string,
   name: string,
   document: string,
   type: string
