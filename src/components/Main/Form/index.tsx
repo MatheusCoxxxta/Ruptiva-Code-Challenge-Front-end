@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     width: "90%",
-    marginBottom: 70,
+    marginBottom: 100,
   },
 
   documentInput: {

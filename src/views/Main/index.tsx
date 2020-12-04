@@ -4,6 +4,7 @@ import {
   RefreshControl,
   StyleSheet,
   StatusBar,
+  ImageBackground,
 } from "react-native";
 import Constants from "expo-constants";
 import Form from "../../components/Main/Form";
@@ -64,11 +65,18 @@ const Main = () => {
         translucent
       />
       <ScrollView
+        scrollEnabled={false}
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
+        <ImageBackground
+          source={require("../../../assets/ruptiva-logo.png")}
+          imageStyle={{ width: 100, height: 50 }}
+          style={styles.container}
+          resizeMode="center"
+        ></ImageBackground>
         <Form handle={handleForm} />
         <UserList users={users} delete={handleDelete} />
       </ScrollView>
@@ -80,14 +88,17 @@ export default Main;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
+    marginTop: 50,
+    marginBottom: 50,
+    alignSelf: "center",
+    width: "90%",
+    height: 100,
   },
   scrollView: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#f0f0f5",
-    paddingTop: 100,
+    backgroundColor: "#e0e0e5",
+    paddingTop: 0,
   },
 });
