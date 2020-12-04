@@ -13,7 +13,7 @@ import { Feather } from "@expo/vector-icons";
 import { User } from "../../../store/users/types";
 
 const UserList = (props: {
-  users: { id: number; name: string; document: string; type: string }[];
+  users: { id?: number; name: string; document: string; type: string }[];
   delete: (user: User) => void;
 }) => {
   let { users } = props;
@@ -36,7 +36,7 @@ const UserList = (props: {
         <DataTable style={styles.dataTable}>
           {users.map(
             (user: {
-              id: number;
+              id?: number;
               name: string;
               document: string;
               type: string;
