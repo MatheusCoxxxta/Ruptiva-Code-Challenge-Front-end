@@ -68,7 +68,9 @@ const UserList = (props: {
                           : { color: "#00b2ff" }
                       }
                     >
-                      {user.document}
+                      {user.document.length === 11
+                        ? cpfMask(user.document)
+                        : cnpjMask(user.document)}
                     </RowDoc>
                   </TextCol>
                 </UserBox>
