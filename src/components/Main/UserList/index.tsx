@@ -42,7 +42,14 @@ const UserList = (props: {
             }) => (
               <Row key={user._id} style={{ flex: 1 }}>
                 <UserBox>
-                  <ImageBg>
+                  <ImageBg
+                    style={[
+                      { borderWidth: 1 },
+                      user.type === "individual"
+                        ? { borderColor: "#ff6a00" }
+                        : { borderColor: "#00b2ff" },
+                    ]}
+                  >
                     <Image
                       style={{ width: 30, height: 30 }}
                       source={

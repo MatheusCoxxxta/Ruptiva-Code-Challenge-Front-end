@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 const Title = styled.Text`
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 15px;
   text-align: center;
   color: #fff;
