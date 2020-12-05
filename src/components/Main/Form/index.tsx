@@ -19,12 +19,12 @@ const Form = (props: { handle: (name: string, document: string) => void }) => {
 
   const handleForm = () => {
     let docFormated: string = formatDocument(document);
-
-    if (name && docFormated) {
+    if (name && (docFormated.length === 11 || docFormated.length === 14)) {
       props.handle(name, docFormated);
       setName("");
       setDocument("");
     }
+
     if (!name) setRequireName("Insira um nome!");
     if (!document) setRequireDocument("Insira um CPF ou CNPJ!");
   };
