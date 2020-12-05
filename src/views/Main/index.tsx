@@ -19,6 +19,7 @@ import {
   saveUser,
   loadRequest,
 } from "../../store/users/actions";
+import userType from "../../../tools/userType";
 
 const wait = (timeout: number) => {
   return new Promise((resolve) => {
@@ -48,12 +49,10 @@ const Main = () => {
     dispatch(loadRequest());
   };
 
-  let type: string;
+  let type: any;
   const handleForm = (name: string, document: string) => {
-    if (document.length === 11) type = "individual";
-    else if (document.length === 14) type = "business";
+    type = userType(document);
     const user: User = { name, document, type };
-
     dispatch(saveUser(user));
   };
 
