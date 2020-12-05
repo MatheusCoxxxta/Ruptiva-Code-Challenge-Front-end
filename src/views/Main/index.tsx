@@ -78,7 +78,7 @@ const Main = () => {
       >
         <ImageBackground
           source={require("../../../assets/ruptiva-logo.png")}
-          imageStyle={{ width: 100, height: 50 }}
+          imageStyle={{ width: 70, height: 40 }}
           style={styles.container}
           resizeMode="center"
         ></ImageBackground>
@@ -94,7 +94,7 @@ export default Main;
 const styles = StyleSheet.create({
   container: {
     marginTop: 50,
-    marginBottom: 50,
+    marginBottom: 30,
     alignSelf: "center",
     width: "90%",
     height: 100,

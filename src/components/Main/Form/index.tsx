@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     width: "90%",
-    marginBottom: 100,
+    marginBottom: 50,
   },
 
   documentInput: {
     width: "100%",
-    height: 45,
+    height: 40,
     borderRadius: 10,
     marginTop: 5,
     marginBottom: 5,

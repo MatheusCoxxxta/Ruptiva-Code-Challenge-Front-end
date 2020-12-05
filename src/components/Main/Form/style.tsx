@@ -12,7 +12,7 @@ const InputGroup = styled.View`
 
 const FormInput = styled.TextInput`
   width: 100%;
-  height: 45px;
+  height: 40px;
   border-radius: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -22,17 +22,16 @@ const FormInput = styled.TextInput`
 
 const FormButton = styled.TouchableOpacity`
   width: 100%;
-  height: 45px;
+  height: 40px;
   border-radius: 10px;
   margin: 10px;
-  background-color: #00b2ff;
+  background-color: #8888af;
   justify-content: center;
 `;
 
 const ButtonText = styled.Text`
   color: #ffffff;
-  font-size: 17px;
-  font-weight: bold;
+  font-size: 15px;
   text-align: center;
 `;
 
